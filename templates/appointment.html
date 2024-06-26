@@ -1,0 +1,363 @@
+{%load static %}
+<!DOCTYPE html>
+<html>
+	<head>
+		<!-- Basic Page Info -->
+		<meta charset="utf-8" />
+		<title>Live Maternology Infirmary System</title>
+
+
+
+		<!-- Mobile Specific Metas -->
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1, maximum-scale=1"
+		/>
+
+		<!-- Google Font -->
+		<link
+			href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+			rel="stylesheet"
+		/>
+		<!-- CSS -->
+		<link rel="stylesheet" type="text/css" href="{% static 'vendors/styles/core.css' %}" />
+		<link
+			rel="stylesheet"
+			type="text/css"
+			href="{% static 'vendors/styles/icon-font.min.css' %}"
+		/>
+		<link
+			rel="stylesheet"
+			type="text/css"
+			href="{% static 'src/plugins/datatables/css/dataTables.bootstrap4.min.css' %}"
+		/>
+		<link
+			rel="stylesheet"
+			type="text/css"
+			href="{% static 'src/plugins/datatables/css/responsive.bootstrap4.min.css' %}"
+		/>
+		<link rel="stylesheet" type="text/css" href="{% static 'vendors/styles/style.css' %}" />
+
+		<!-- Global site tag (gtag.js) - Google Analytics -->
+		<script
+			async
+			src="https://www.googletagmanager.com/gtag/js?id=G-GBZ3SGGX85"
+		></script>
+		<script>
+			window.dataLayer = window.dataLayer || [];
+			function gtag() {
+				dataLayer.push(arguments);
+			}
+			gtag("js", new Date());
+
+			gtag("config", "G-GBZ3SGGX85");
+		</script>
+		<!-- Google Tag Manager -->
+		<script>
+			(function (w, d, s, l, i) {
+				w[l] = w[l] || [];
+				w[l].push({ "gtm.start": new Date().getTime(), event: "gtm.js" });
+				var f = d.getElementsByTagName(s)[0],
+					j = d.createElement(s),
+					dl = l != "dataLayer" ? "&l=" + l : "";
+				j.async = true;
+				j.src = "https://www.googletagmanager.com/gtm.js?id=" + i + dl;
+				f.parentNode.insertBefore(j, f);
+			})(window, document, "script", "dataLayer", "GTM-NXZMQSS");
+		</script>
+		<!-- End Google Tag Manager -->
+	</head>
+	<body>
+		<div class="pre-loader">
+			<div class="pre-loader-box">
+				<div class="loader-logo">
+					<div class="brand-logo">
+						<h3 style="font-family: 'Century Gothic', CenturyGothic, AppleGothic, sans-serif;margin-top: 10px;color: #1b00ff"
+			  ><strong>Live Maternology Infirmary System</strong></h3>
+
+					</div>
+				</div>
+				<div class="loader-progress" id="progress_div">
+					<div class="bar" id="bar1"></div>
+				</div>
+				<div class="percent" id="percent1">0%</div>
+				<div class="loading-text">Loading...</div>
+			</div>
+		</div>
+
+		<div class="header">
+			<div class="header-left">
+				<div class="menu-icon bi bi-list"></div>
+
+			</div>
+			<div class="header-right">
+
+				<div class="user-info-dropdown">
+					<div class="dropdown">
+						<a
+							class="dropdown-toggle"
+							href="#"
+							role="button"
+							data-toggle="dropdown"
+						>
+							<span class="user-icon">
+								<img src="{% static 'vendors/images/photo1.jpg' %}" alt="" />
+							</span>
+							<span class="user-name">{{user.first_name}} {{user.last_name}}</span>
+						</a>
+						<div
+							class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list"
+						>
+
+							<a class="dropdown-item" href="{% url 'logout' %}"
+								><i class="dw dw-logout"></i> Log Out</a
+							>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="right-sidebar">
+			<div class="sidebar-title">
+				<h3 class="weight-600 font-16 text-blue">
+					Layout Settings
+					<span class="btn-block font-weight-400 font-12"
+						>User Interface Settings</span
+					>
+				</h3>
+				<div class="close-sidebar" data-toggle="right-sidebar-close">
+					<i class="icon-copy ion-close-round"></i>
+				</div>
+			</div>
+			<div class="right-sidebar-body customscroll">
+				<div class="right-sidebar-body-content">
+					<h4 class="weight-600 font-18 pb-10">Header Background</h4>
+					<div class="sidebar-btn-group pb-30 mb-10">
+						<a
+							href="javascript:void(0);"
+							class="btn btn-outline-primary header-white active"
+							>White</a
+						>
+						<a
+							href="javascript:void(0);"
+							class="btn btn-outline-primary header-dark"
+							>Dark</a
+						>
+					</div>
+
+					<h4 class="weight-600 font-18 pb-10">Sidebar Background</h4>
+					<div class="sidebar-btn-group pb-30 mb-10">
+						<a
+							href="javascript:void(0);"
+							class="btn btn-outline-primary sidebar-light"
+							>White</a
+						>
+						<a
+							href="javascript:void(0);"
+							class="btn btn-outline-primary sidebar-dark active"
+							>Dark</a
+						>
+					</div>
+
+
+
+					<div class="reset-options pt-30 text-center">
+						<button class="btn btn-danger" id="reset-settings">
+							Reset Settings
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="left-side-bar">
+			<div class="brand-logo">
+
+					<h3 style="font-family: 'Century Gothic', CenturyGothic, AppleGothic, sans-serif;margin-top: 10px;color: #1b00ff"
+          ><strong>Live Maternology Infirmary System</strong></h3>
+
+				<div class="close-sidebar" data-toggle="left-sidebar-close">
+					<i class="ion-close-round"></i>
+				</div>
+			</div>
+			<div class="menu-block customscroll">
+				<div class="sidebar-menu">
+					<ul id="accordion-menu">
+						<li>
+							<a href="{% url 'home' %}" class="dropdown-toggle no-arrow">
+								<span class="micon bi bi-file-earmark-text"></span
+								><span class="mtext">Dashboard</span>
+							</a>
+						</li>
+						<li>
+							<a href="{% url 'appointment' %}" class="dropdown-toggle no-arrow">
+								<span class="micon bi-hdd-stack"></span
+								><span class="mtext">Appointments</span>
+							</a>
+						</li>
+						<li>
+							<a href="{% url 'schedule' %}" class="dropdown-toggle no-arrow">
+								<span class="micon bi bi-calendar4-week"></span
+								><span class="mtext">Pregnacy Pathway</span>
+							</a>
+						</li>
+						<li>
+							<a href="{% url 'prediction' %}" class="dropdown-toggle no-arrow">
+								<span class="micon bi bi-diagram-3"></span
+								><span class="mtext">Emergency</span>
+							</a>
+						</li>
+						<li>
+							<a href="{% url 'calling' %}" class="dropdown-toggle no-arrow">
+								<span class="micon fa fa-phone"></span
+								><span class="mtext">Call</span>
+							</a>
+						</li>
+						<li>
+							<a href="https://wa.me/15550841639" class="dropdown-toggle no-arrow">
+								<span class="micon bi bi-calendar4-week"></span
+								><span class="mtext">Infirmary WhatsApp</span>
+							</a>
+						</li>
+
+
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div class="mobile-menu-overlay"></div>
+
+		<div class="main-container">
+			<div class="xs-pd-20-10 pd-ltr-20">
+				<div class="title pb-20">
+					<div class="row">
+						<h2 class="h3 mb-0">Hospital Overview</h2>
+
+					</div>
+					<button class="btn btn-success" type="button" data-toggle="modal" data-target="#modaladdappointment">ADD Appointment</button>
+					<div
+							id="modaladdappointment"
+							class="modal modal-top fade "
+							tabindex="-1"
+						>
+							<div class="modal-dialog modal-dialog-centered">
+								<div class="modal-content">
+									<form action="{% url 'appointment' %}" method="post" role="form">
+										{% csrf_token %}
+										<div class="modal-body">
+											<h4 class="text-blue h4 mb-10">Add Appointment Details</h4>
+											<div class="form-group">
+												<label>Date</label>
+												<input type="text" class="datetimepicker form-control" class="form-control" id="date" name="date">
+											</div>
+											<div class="form-group">
+												<label>Message</label>
+												<textarea class="form-control" name="message" id="message" rows="5" placeholder="Message"></textarea>
+											</div>
+										</div>
+										<div class="modal-footer">
+											<button type="submit" class="btn btn-primary">
+												Save
+											</button>
+											<button
+												type="button"
+												class="btn btn-primary"
+												data-dismiss="modal"
+											>
+												Close
+											</button>
+										</div>
+									</form>
+								</div>
+							</div>
+						</div>
+
+				</div>
+
+				<div class="card-box pb-10">
+					<div class="h5 pd-20 mb-0">Recent Appointments</div>
+					<table class="data-table table nowrap">
+						<thead>
+							<tr>
+								<th class="table-plus">Message</th>
+								<th>Date</th>
+								<th>Status</th>
+
+								<th>Connect</th>
+							</tr>
+						</thead>
+						<tbody>
+							{% for appointment in appointments %}
+
+                <tr>
+                   <td class="table-plus">{{appointment.message}}</td>
+				   <td>{{appointment.date}}</td>
+				   {% if appointment.status == False %}
+				   <td>
+					<span
+						class="badge badge-pill"
+						data-bgcolor="#e7ebf5"
+						data-color="#265ed7"
+						>Pending</span
+					>
+				</td>
+				<td>
+					<a href="{% url 'meetTest' appointment.pk%}" class="btn btn-sm btn-outline-primary"
+					>Join</a
+					>
+				</td>
+				   {% else %}
+				   <td>
+					<span
+						class="badge badge-pill"
+						data-bgcolor="#e7ebf5"
+						data-color="#265ed7"
+						>Done</span
+					>
+				</td>
+				<td>
+				</td>
+				<td>
+				</td>
+				   {% endif %}
+
+
+
+
+               </tr>
+                {% endfor %}
+
+						</tbody>
+					</table>
+				</div>
+
+
+			</div>
+
+
+		</div>
+		<!-- welcome modal end -->
+		<!-- js -->
+		<script src="{% static 'vendors/scripts/core.js' %}"></script>
+		<script src="{% static 'vendors/scripts/script.min.js' %}"></script>
+		<script src="{% static 'vendors/scripts/process.js' %}"></script>
+		<script src="{% static 'vendors/scripts/layout-settings.js' %}"></script>
+		<script src="{% static 'src/plugins/apexcharts/apexcharts.min.js' %}"></script>
+		<script src="{% static 'src/plugins/datatables/js/jquery.dataTables.min.js' %}"></script>
+		<script src="{% static 'src/plugins/datatables/js/dataTables.bootstrap4.min.js' %}"></script>
+		<script src="{% static 'src/plugins/datatables/js/dataTables.responsive.min.js' %}"></script>
+		<script src="{% static 'src/plugins/datatables/js/responsive.bootstrap4.min.js' %}"></script>
+		<script src="{% static 'vendors/scripts/dashboard3.js' %}"></script>
+		<!-- Google Tag Manager (noscript) -->
+		<noscript
+			><iframe
+				src="https://www.googletagmanager.com/ns.html?id=GTM-NXZMQSS"
+				height="0"
+				width="0"
+				style="display: none; visibility: hidden"
+			></iframe
+		></noscript>
+		<!-- End Google Tag Manager (noscript) -->
+	</body>
+</html>
